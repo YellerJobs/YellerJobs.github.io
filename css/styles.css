@@ -5,6 +5,9 @@
     --text-color: #333;
     --border-radius: 8px;
     --transition: all 0.3s ease;
+    --nav-text-color: #666;
+    --nav-active-color: #0a66c2;
+    --nav-hover-bg: rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -20,20 +23,14 @@ body {
     background-color: var(--background-color);
 }
 
-header {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+nav {
+    background-color: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
+    padding: 0 5%;
 }
 
 .logo img {
@@ -43,24 +40,57 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
+    align-items: center;
+    justify-content: flex-end;
+    height: 52px;
 }
 
 nav ul li {
-    margin-right: 2rem;
+    margin: 0 4px;
 }
 
-nav ul li a {
+.nav-button {
     text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: var(--transition);
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
+    color: var(--nav-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    height: 52px;
+    min-width: 80px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-nav ul li a:hover, nav ul li a.active {
-    background-color: var(--primary-color);
-    color: #ffffff;
+.nav-button i {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.nav-button span {
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.nav-button:hover {
+    background-color: var(--nav-hover-bg);
+    color: var(--nav-text-color);
+}
+
+.nav-button.active {
+    color: var(--nav-active-color);
+}
+
+.nav-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--nav-active-color);
 }
 
 main {
@@ -100,6 +130,7 @@ main {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero p {
@@ -164,11 +195,16 @@ h2 {
     padding: 1.5rem;
     transition: var(--transition);
     border-left: 5px solid var(--primary-color);
+    animation: fadeIn 0.5s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .job-card h3 {
@@ -177,13 +213,99 @@ h2 {
 }
 
 .job-card p {
-    margin-bottom: 1rem;
+    margin: 5px 0;
+}
+
+.job-card .company,
+.job-card .location,
+.job-card .job-type,
+.job-card .salary {
+    font-size: 0.9em;
+    color: #666;
 }
 
 .job-card .company {
     font-weight: bold;
     color: var(--primary-color);
 }
+
+.job-card .job-summary {
+    margin: 10px 0;
+}
+
+.job-card .job-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.job-card-content {
+    flex-grow: 1;
+}
+
+.job-card-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.expand-job,
+.apply-job {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.expand-job {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    margin-right: 10px;
+}
+
+.expand-job:hover {
+    background-color: #3a7bd5;
+    transform: translateY(-2px);
+}
+
+.expand-job i {
+    margin-left: 6px;
+}
+
+.apply-job {
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-job:hover {
+    background-color: #e09400;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.job-category {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.frontend { background-color: #ff6b6b; color: white; }
+.backend { background-color: #4ecdc4; color: white; }
+.fullstack { background-color: #45aaf2; color: white; }
+.devops { background-color: #a55eea; color: white; }
+.mobile { background-color: #26de81; color: white; }
 
 #contact-form {
     display: flex;
@@ -193,35 +315,39 @@ h2 {
 }
 
 #contact-form input,
-#contact-form textarea {
+#contact-form textarea,
+#contact-form select {
     margin-bottom: 1rem;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #contact-form input:focus,
-#contact-form textarea:focus {
+#contact-form textarea:focus,
+#contact-form select:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
 #contact-form button {
-    background-color: var(--primary-color);
+    background-image: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: 30px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-size: 1rem;
     font-weight: bold;
 }
 
 #contact-form button:hover {
-    background-color: #3a7bd5;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 footer {
@@ -229,32 +355,6 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem;
-}
-
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-
-    nav ul {
-        margin-top: 1rem;
-    }
-
-    nav ul li {
-        margin-right: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-    }
-
-    .job-list {
-        grid-template-columns: 1fr;
-    }
 }
 
 .center-button {
@@ -266,3 +366,231 @@ footer {
     display: inline-block;
 }
 
+.error {
+    border-color: red !important;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#back-to-top:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#back-to-top:active {
+    transform: translateY(-1px);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {transform: translateX(0);}
+    10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+    20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
+@media (max-width: 1024px) {
+    .job-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        box-shadow: none;
+    }
+
+    nav ul {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-around;
+        background-color: #fff;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+        height: 56px;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    .nav-button {
+        height: 56px;
+        min-width: 0;
+        padding: 0 12px;
+    }
+
+    .nav-button.active::after {
+        top: 0;
+        bottom: auto;
+    }
+
+    .job-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --text-color: #f0f0f0;
+        --primary-color: #6ab0ff;
+        --secondary-color: #ffc107;
+    }
+
+    .job-card {
+        background-color: #2a2a2a;
+    }
+}
+
+
+/* עדכון לסגנונות הניווט */
+nav {
+    background-color: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 5%; /* הוספת ריפוד למעלה ולמטה */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px; /* התאמת גובה הלוגו לפי הצורך */
+    margin-right: 10px; /* מרווח בין הלוגו לתפריט */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px; /* מרווח בין פריטי התפריט */
+}
+
+.nav-button {
+    text-decoration: none;
+    color: var(--nav-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    height: 60px; /* גובה מותאם לכפתורי הניווט */
+    min-width: 80px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-button i {
+    font-size: 1.4rem; /* גודל אייקון מותאם */
+    margin-bottom: 4px;
+}
+
+.nav-button span {
+    font-size: 0.8rem; /* גודל טקסט מותאם */
+    font-weight: 400;
+}
+
+/* התאמות למסכים קטנים */
+@media (max-width: 768px) {
+    nav {
+        padding: 5px 2%;
+    }
+
+    .logo img {
+        height: 30px; /* הקטנת הלוגו במסכים קטנים */
+    }
+
+    nav ul {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-around;
+        background-color: #fff;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+        padding: 5px 0;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    .nav-button {
+        height: 50px;
+        min-width: 60px;
+        padding: 5px;
+    }
+
+    .nav-button i {
+        font-size: 1.2rem;
+    }
+
+    .nav-button span {
+        font-size: 0.7rem;
+    }
+}

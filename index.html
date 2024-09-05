@@ -6,22 +6,16 @@
     <title>משרות לג'וניורים</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/hamburger.css">
+    <link rel="stylesheet" href="css/job-modal.css">
+    <!-- עמוד העיצוב של החלון של המשרה שנפתח -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <header>
-    <nav>
-        <div class="logo">
-            <img src="images/logo.svg" alt="לוגו משרות לג'וניורים">
-        </div>
-        <ul>
-            <li><a href="#home">דף הבית</a></li>
-            <li><a href="#jobs">משרות</a></li>
-            <li><a href="jobs.html">לכל המשרות</a></li>
-            <li><a href="#about">אודות</a></li>
-            <li><a href="#contact">צור קשר</a></li>
-        </ul>
-    </nav>
+
 </header>
 
 <main>
@@ -34,33 +28,29 @@
     <section id="jobs">
         <h2><i class="fas fa-briefcase"></i> משרות זמינות</h2>
         <div class="job-filters">
-            <input type="text" id="search" placeholder="חפש משרה...">
+            <input type="text" id="search" placeholder="חפש משרה..." list="job-suggestions">
+            <datalist id="job-suggestions">
+                <!-- יתמלא דינמית ע"י JavaScript -->
+            </datalist>
             <select id="category">
                 <option value="">כל הקטגוריות</option>
                 <option value="frontend">פרונט-אנד</option>
                 <option value="backend">בק-אנד</option>
                 <option value="fullstack">פול-סטאק</option>
             </select>
+            <select id="job-type">
+                <option value="">סוג משרה</option>
+                <option value="full-time">משרה מלאה</option>
+                <option value="part-time">משרה חלקית</option>
+                <option value="contract">חוזה</option>
+            </select>
+            <input type="number" id="min-salary" placeholder="שכר מינימום">
+            <input type="number" id="max-salary" placeholder="שכר מקסימום">
         </div>
         <div id="job-list" class="job-list"></div>
         <div class="center-button">
-            <a href="jobs.html" class="cta-button">צפה בכל המשרות</a>
+            <a href="jobs.html" class="cta-button">לכל המשרות ></a>
         </div>
-    </section>
-
-    <section id="about">
-        <h2>אודות</h2>
-        <p>אנחנו מחברים בין ג'וניורים מוכשרים לבין חברות מובילות בתעשייה.</p>
-    </section>
-
-    <section id="contact">
-        <h2>צור קשר</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="שם מלא" required>
-            <input type="email" name="email" placeholder="אימייל" required>
-            <textarea name="message" placeholder="הודעה" required></textarea>
-            <button type="submit">שלח</button>
-        </form>
     </section>
 </main>
 
@@ -68,7 +58,20 @@
     <p>&copy; 2023 משרות לג'וניורים. כל הזכויות שמורות.</p>
 </footer>
 
-<script src="js/jobs.js"></script>
-<script src="js/main.js"></script>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/jobs-page.js"></script>
+<button id="back-to-top" title="חזרה למעלה">
+    <i class="fas fa-chevron-up"></i>
+</button>
+<script src="js/hamburger.js"></script>
+<script src="js/load-nav.js"></script>
+
+<div id="jobModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modalJobDetails"></div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אודות - משרות לג'וניורים</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/hamburger.css">
+    <style>
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            margin-left: 2rem;
+        }
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .feature-item {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .feature-item i {
+            color: var(--primary-color);
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+    </header>
+
+    <main>
+        <section id="about">
+            <h1>אודות משרות לג'וניורים</h1>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>אנחנו בחברת משרות לג'וניורים מאמינים שלכל מתכנת מתחיל מגיעה הזדמנות להשתלב בתעשיית ההייטק. המשימה שלנו היא לחבר בין ג'וניורים מוכשרים לבין חברות מובילות בתעשייה.</p>
+                    <p>הוקמנו בשנת 2020 מתוך הבנה שישנו פער משמעותי בין הדרישות של חברות ההייטק לבין היכולות של מפתחים בתחילת דרכם. אנו שואפים לגשר על פער זה ולסייע לג'וניורים למצוא את מקומם בתעשייה.</p>
+                    <p>הצוות שלנו מורכב ממומחי גיוס, מפתחים ותיקים ויועצי קריירה, שכולם מחויבים למטרה של קידום הדור הבא של מפתחי התוכנה בישראל.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-us.jpg" alt="צוות משרות לג'וניורים">
+                </div>
+            </div>
+            <h2>הפלטפורמה שלנו מציעה:</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>מגוון משרות לג'וניורים</h3>
+                    <p>אנו מציעים מבחר רחב של משרות המתאימות במיוחד למפתחים בתחילת דרכם.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>שיפור קורות חיים</h3>
+                    <p>כלים וטיפים לשיפור הקורות חיים שלך כדי להבליט את היתרונות שלך.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h3>קהילה תומכת</h3>
+                    <p>הצטרף לקהילה של מפתחים מתחילים לשיתוף ידע ותמיכה הדדית.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>מידע על טרנדים בתעשייה</h3>
+                    <p>עדכונים שוטפים על הטכנולוגיות והמיומנויות המבוקשות ביותר בשוק.</p>
+                </div>
+            </div>
+            <p>אנחנו כאן כדי לעזור לך לצעוד את הצעדים הראשונים בקריירה שלך בעולם ההייטק!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 משרות לג'וניורים. כל הזכויות שמורות.</p>
+    </footer>
+<script src="js/hamburger.js"></script>
+    <script src="js/load-nav.js"></script>
+
+<button id="back-to-top" title="חזרה למעלה">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+</body>
+</html>
