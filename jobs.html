@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משרות לג'וניורים - כל המשרות</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/jobs.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.svg" alt="לוגו משרות לג'וניורים">
+            </div>
+            <ul>
+                <li><a href="index.html">דף הבית</a></li>
+                <li><a href="jobs.html" class="active">משרות</a></li>
+                <li><a href="index.html#about">אודות</a></li>
+                <li><a href="index.html#contact">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="jobs-page">
+            <h1>כל המשרות</h1>
+            <div class="job-filters">
+                <input type="text" id="search" placeholder="חפש משרה...">
+                <select id="category">
+                    <option value="">כל הקטגוריות</option>
+                    <option value="frontend">פרונט-אנד</option>
+                    <option value="backend">בק-אנד</option>
+                    <option value="fullstack">פול-סטאק</option>
+                </select>
+            </div>
+            <div id="job-list" class="job-list"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 משרות לג'וניורים. כל הזכויות שמורות.</p>
+    </footer>
+
+    <script src="js/jobs.js"></script>
+    <script src="js/jobs-page.js"></script>
+</body>
+</html>
