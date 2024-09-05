@@ -4,16 +4,24 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML('afterbegin', data);
-            highlightCurrentPage();
-        });
+            console.log('Navigation loaded'); // הוסף את זה לבדיקה
+            setupHamburgerMenu(); // הוסף פונקציה חדשה
+        })
+        .catch(error => console.error('Error loading navigation:', error));
 });
 
-function highlightCurrentPage() {
-    const currentPage = window.location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll('.nav-button');
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
-    });
+function setupHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+        console.log('Hamburger and nav menu found'); // הוסף את זה לבדיקה
+        hamburger.addEventListener('click', function() {
+            console.log('Hamburger clicked');
+            this.classList.toggle('active');
+            navMenu.classList.toggle('show');
+        });
+    } else {
+        console.error('Hamburger or nav menu not found');
+    }
 }

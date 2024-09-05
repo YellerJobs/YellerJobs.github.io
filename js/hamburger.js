@@ -1,10 +1,24 @@
 // hamburger.js
-document.addEventListener('DOMContentLoaded', function() {
+function setupHamburgerMenu() {
     const hamburger = document.querySelector('.hamburger');
-    const navUl = document.querySelector('nav ul');
+    const navMenu = document.querySelector('.nav-menu');
 
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navUl.classList.toggle('show');
-    });
-});
+    if (hamburger && navMenu) {
+        console.log('Hamburger and nav menu found'); // הוסף את זה לבדיקה
+        hamburger.addEventListener('click', function() {
+            console.log('Hamburger clicked');
+            this.classList.toggle('active');
+            navMenu.classList.toggle('show');
+        });
+    } else {
+        console.error('Hamburger or nav menu not found');
+    }
+}
+
+// נסה להגדיר את התפריט מיד כשהקובץ נטען
+setupHamburgerMenu();
+
+// נסה שוב אחרי שהדף נטען במלואו
+document.addEventListener('DOMContentLoaded', setupHamburgerMenu);
+
+console.log('hamburger.js loaded');

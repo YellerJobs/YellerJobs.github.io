@@ -594,3 +594,69 @@ nav ul li {
         font-size: 0.7rem;
     }
 }
+
+@media (max-width: 768px) {
+    nav {
+        padding: 10px 5%;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .job-filters {
+        flex-direction: column;
+    }
+
+    .job-filters input,
+    .job-filters select {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .job-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 3rem 5%;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0;
+    }
+
+    .nav-container {
+        padding: 10px 5%;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .nav-menu {
+        top: 100%; /* שינוי זה יגרום לתפריט להופיע מתחת לסרגל הניווט */
+    }
+
+    /* שאר הסגנונות כפי שהיו קודם */
+}
