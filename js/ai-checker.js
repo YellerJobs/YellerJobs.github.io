@@ -1,4 +1,4 @@
-const API_KEY = '__API_KEY__'; 
+const API_KEY = 'AIzaSyAoLGDUwJJY4ZzmTXaYbwCwlxU2HNPxROQ'; 
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 document.getElementById('analyzeButton').addEventListener('click', analyzeResume);
