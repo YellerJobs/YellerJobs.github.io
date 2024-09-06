@@ -10,7 +10,12 @@ const translations = {
         keyStrengths: "Key Strengths",
         areasForImprovement: "Areas for Improvement",
         suitableRoles: "Suitable Roles",
-        actionableSuggestions: "Actionable Suggestions"
+        actionableSuggestions: "Actionable Suggestions",
+        resumeUploaded: "Resume uploaded successfully",
+        showResume: "Show Resume",
+        hideResume: "Hide Resume",
+        analyzingResume: "Analyzing your resume..."
+
     },
     he: {
         title: "מנתח קורות חיים",
@@ -20,18 +25,14 @@ const translations = {
         keyStrengths: "חוזקות מרכזיות",
         areasForImprovement: "תחומים לשיפור",
         suitableRoles: "תפקידים מתאימים",
-        actionableSuggestions: "הצעות לפעולה"
+        actionableSuggestions: "הצעות לפעולה",
+        resumeUploaded: "קורות החיים הועלו בהצלחה",
+        showResume: "הצג קורות חיים",
+        hideResume: "הסתר קורות חיים",
+        analyzingResume: "מנתח את קורות החיים שלך..."
+
     }
 };
-
-// הוסף את הספריות הנדרשות
-const script1 = document.createElement('script');
-script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js';
-document.head.appendChild(script1);
-
-const script2 = document.createElement('script');
-script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.0/mammoth.browser.min.js';
-document.head.appendChild(script2);
 
 document.addEventListener('DOMContentLoaded', () => {
     const analyzeButton = document.getElementById('analyzeButton');
@@ -86,6 +87,12 @@ function updateUILanguage(language) {
     document.getElementById('resumeText').placeholder = trans.placeholder;
     document.getElementById('analyzeButton').textContent = trans.button;
     document.getElementById('dropZoneText').textContent = trans.placeholder;
+
+    // Update toggle button text if it exists
+    const toggleButton = document.getElementById('toggleResumeButton');
+    if (toggleButton) {
+        toggleButton.textContent = resumeTextArea.style.display === 'none' ? trans.showResume : trans.hideResume;
+    }
 }
 
 function handleFile(file) {
@@ -109,6 +116,7 @@ function handleFile(file) {
         const reader = new FileReader();
         reader.onload = (event) => {
             resumeText.value = event.target.result;
+            showResumeUploadedMessage();
         };
         reader.readAsText(file);
     } else if (file.type === 'application/pdf') {
@@ -128,6 +136,7 @@ function handleFile(file) {
                 }
                 Promise.all(countPromises).then(function (texts) {
                     resumeText.value = texts.join('\n\n');
+                    showResumeUploadedMessage();
                 });
             });
         };
@@ -138,6 +147,7 @@ function handleFile(file) {
             mammoth.extractRawText({arrayBuffer: event.target.result})
                 .then(function(result){
                     resumeText.value = result.value;
+                    showResumeUploadedMessage();
                 })
                 .catch(function(error) {
                     console.error(error);
@@ -148,17 +158,67 @@ function handleFile(file) {
     }
 }
 
+function showResumeUploadedMessage() {
+    const resumeText = document.getElementById('resumeText');
+    const dropZone = document.getElementById('dropZone');
+    const language = document.getElementById('languageSelect').value;
+    const trans = translations[language];
+
+    // Hide the textarea
+    resumeText.style.display = 'none';
+
+    // Create and show the success message
+    const successMessage = document.createElement('div');
+    successMessage.className = 'success-message';
+    successMessage.innerHTML = `<i class="fas fa-check-circle"></i> ${trans.resumeUploaded}`;
+    dropZone.appendChild(successMessage);
+
+    // Create toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.id = 'toggleResumeButton';
+    toggleButton.textContent = trans.showResume;
+    toggleButton.className = 'toggle-button';
+    toggleButton.onclick = toggleResumeDisplay;
+    dropZone.appendChild(toggleButton);
+}
+
+function toggleResumeDisplay() {
+    const resumeText = document.getElementById('resumeText');
+    const toggleButton = document.getElementById('toggleResumeButton');
+    const language = document.getElementById('languageSelect').value;
+    const trans = translations[language];
+
+    if (resumeText.style.display === 'none') {
+        resumeText.style.display = 'block';
+        toggleButton.textContent = trans.hideResume;
+    } else {
+        resumeText.style.display = 'none';
+        toggleButton.textContent = trans.showResume;
+    }
+}
+
 async function analyzeResume() {
     const resumeText = document.getElementById('resumeText').value;
     const resultDiv = document.getElementById('result');
     const language = document.getElementById('languageSelect').value;
+    const trans = translations[language];
 
     if (!resumeText) {
         resultDiv.textContent = 'Please enter a resume to analyze.';
         return;
     }
 
-    resultDiv.innerHTML = '<div class="loader"></div>';
+    // Show loading animation
+    resultDiv.innerHTML = `
+        <div class="loading-container">
+            <div class="fancy-spinner">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="dot"></div>
+            </div>
+            <p class="loading-text">${trans.analyzingResume}</p>
+        </div>
+    `;
     document.getElementById('analyzeButton').disabled = true;
 
     const prompt = `
