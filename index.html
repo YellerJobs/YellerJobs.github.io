@@ -67,7 +67,24 @@
 <script src="js/hamburger.js"></script>
 <script src="js/load-nav.js"></script>
 <script src="js/hamburger.js" defer></script>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    console.log('Hamburger:', hamburger);
+    console.log('Nav menu:', navMenu);
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            console.log('Hamburger clicked inline');
+            this.classList.toggle('active');
+            navMenu.classList.toggle('show');
+        });
+    } else {
+        console.error('Hamburger or nav menu not found inline');
+    }
+});
+</script>
 <div id="jobModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>

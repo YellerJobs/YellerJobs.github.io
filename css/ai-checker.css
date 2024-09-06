@@ -121,3 +121,138 @@ body[dir="rtl"] .result-section li::before {
     right: -20px;
     left: auto;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.drop-zone.dragover {
+    background-color: #e9e9e9;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 150px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+button, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+#result {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.result-section {
+    margin-bottom: 20px;
+}
+
+.result-section h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    display: flex;
+
+    /* ... (קוד קודם נשאר ללא שינוי) */
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.drop-zone.dragover {
+    background-color: #e9e9e9;
+}
+
+.drop-zone p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 150px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+/* ... (שאר הקוד נשאר ללא שינוי) */

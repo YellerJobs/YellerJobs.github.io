@@ -1,13 +1,10 @@
-const API_KEY = 'AIzaSyAoLGDUwJJY4ZzmTXaYbwCwlxU2HNPxROQ'; 
+const API_KEY = 'AIzaSyAoLGDUwJJY4ZzmTXaYbwCwlxU2HNPxROQ';
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-
-document.getElementById('analyzeButton').addEventListener('click', analyzeResume);
-document.getElementById('languageSelect').addEventListener('change', handleLanguageChange);
 
 const translations = {
     en: {
         title: "Resume Analyzer",
-        placeholder: "Paste your resume here...",
+        placeholder: "Paste your resume here or drop a file...",
         button: "Analyze Resume",
         overallRating: "Overall Rating",
         keyStrengths: "Key Strengths",
@@ -17,7 +14,7 @@ const translations = {
     },
     he: {
         title: "מנתח קורות חיים",
-        placeholder: "הדבק את קורות החיים שלך כאן...",
+        placeholder: "הדבק את קורות החיים שלך כאן או גרור קובץ...",
         button: "נתח קורות חיים",
         overallRating: "דירוג כללי",
         keyStrengths: "חוזקות מרכזיות",
@@ -27,19 +24,59 @@ const translations = {
     }
 };
 
-function handleLanguageChange() {
+// הוסף את הספריות הנדרשות
+const script1 = document.createElement('script');
+script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js';
+document.head.appendChild(script1);
+
+const script2 = document.createElement('script');
+script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.0/mammoth.browser.min.js';
+document.head.appendChild(script2);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const analyzeButton = document.getElementById('analyzeButton');
     const languageSelect = document.getElementById('languageSelect');
-    const customLanguageInput = document.getElementById('customLanguage');
-    const language = languageSelect.value;
+    const resumeTextArea = document.getElementById('resumeText');
+    const resultDiv = document.getElementById('result');
+    const dropZone = document.getElementById('dropZone');
 
-    customLanguageInput.style.display = language === 'custom' ? 'block' : 'none';
+    analyzeButton.addEventListener('click', analyzeResume);
+    languageSelect.addEventListener('change', handleLanguageChange);
 
-    if (language === 'he') {
-        document.body.setAttribute('dir', 'rtl');
-    } else {
-        document.body.setAttribute('dir', 'ltr');
-    }
+    // File drop functionality
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
 
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    });
+
+    // File input functionality
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    });
+
+    handleLanguageChange(); // Initialize language
+});
+
+function handleLanguageChange() {
+    const language = document.getElementById('languageSelect').value;
+    document.body.setAttribute('dir', language === 'he' ? 'rtl' : 'ltr');
     updateUILanguage(language);
 }
 
@@ -48,43 +85,95 @@ function updateUILanguage(language) {
     document.getElementById('pageTitle').textContent = trans.title;
     document.getElementById('resumeText').placeholder = trans.placeholder;
     document.getElementById('analyzeButton').textContent = trans.button;
+    document.getElementById('dropZoneText').textContent = trans.placeholder;
+}
+
+function handleFile(file) {
+    const allowedTypes = ['text/plain', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf'];
+    const maxSizeBytes = 5 * 1024 * 1024; // 5MB
+
+    if (!allowedTypes.includes(file.type)) {
+        alert('Only .txt, .docx, and .pdf files are allowed.');
+        return;
+    }
+
+    if (file.size > maxSizeBytes) {
+        alert('File size exceeds 5MB limit.');
+        return;
+    }
+
+    const resumeText = document.getElementById('resumeText');
+    resumeText.value = 'Processing file...';
+
+    if (file.type === 'text/plain') {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            resumeText.value = event.target.result;
+        };
+        reader.readAsText(file);
+    } else if (file.type === 'application/pdf') {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const typedarray = new Uint8Array(this.result);
+
+            pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+                let fullText = '';
+                let countPromises = [];
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    countPromises.push(pdf.getPage(i).then(function(page) {
+                        return page.getTextContent().then(function(content) {
+                            return content.items.map(item => item.str).join(' ');
+                        });
+                    }));
+                }
+                Promise.all(countPromises).then(function (texts) {
+                    resumeText.value = texts.join('\n\n');
+                });
+            });
+        };
+        reader.readAsArrayBuffer(file);
+    } else if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            mammoth.extractRawText({arrayBuffer: event.target.result})
+                .then(function(result){
+                    resumeText.value = result.value;
+                })
+                .catch(function(error) {
+                    console.error(error);
+                    resumeText.value = 'Error processing DOCX file. Please try again or paste the content manually.';
+                });
+        };
+        reader.readAsArrayBuffer(file);
+    }
 }
 
 async function analyzeResume() {
     const resumeText = document.getElementById('resumeText').value;
     const resultDiv = document.getElementById('result');
-    const languageSelect = document.getElementById('languageSelect');
-    const customLanguageInput = document.getElementById('customLanguage');
-
-    let language = languageSelect.value;
-    if (language === 'custom') {
-        language = customLanguageInput.value || 'English';
-    }
+    const language = document.getElementById('languageSelect').value;
 
     if (!resumeText) {
         resultDiv.textContent = 'Please enter a resume to analyze.';
         return;
     }
 
-    resultDiv.textContent = 'Analyzing...';
+    resultDiv.innerHTML = '<div class="loader"></div>';
+    document.getElementById('analyzeButton').disabled = true;
 
     const prompt = `
     Please provide a focused analysis of the following resume. Your analysis should include:
 
     1. Overall Rating: Provide a rating out of 10 and briefly explain the reasoning.
-
     2. Key Strengths: Identify and explain the top 3 strengths of the resume.
-
     3. Areas for Improvement: Highlight the top 3 areas where the resume could be enhanced.
-
     4. Suitable Roles: Based on the content, suggest 2-3 specific job roles this resume seems most suited for.
-
     5. Actionable Suggestions: Provide 3 specific, actionable suggestions for improving the resume. These should be detailed and explain why they would be beneficial.
 
     Resume:
     ${resumeText}
 
-    Please provide your response in ${language}.
+    Please provide your response in ${translations[language].title}.
     Regardless of the language of the resume, please analyze it and respond in the requested language.
     Format your response using appropriate headers for each section of the analysis.
     `;
@@ -110,6 +199,8 @@ async function analyzeResume() {
     } catch (error) {
         console.error('Error:', error);
         resultDiv.textContent = 'An error occurred while analyzing the resume.';
+    } finally {
+        document.getElementById('analyzeButton').disabled = false;
     }
 }
 
@@ -117,10 +208,9 @@ function displayFormattedResult(text, language) {
     const resultDiv = document.getElementById('result');
     const trans = translations[language] || translations.en;
 
-    // Split the text into sections based on main headers
     const sections = text.split(/(?=^\d+\.\s+[A-Z])/m);
 
-    let formattedHTML = '';
+    let formattedHTML = '<div class="analysis-result">';
 
     sections.forEach(section => {
         const lines = section.trim().split('\n');
@@ -139,10 +229,11 @@ function displayFormattedResult(text, language) {
                 </div>
             `;
         } else {
-            // If it's not a main header, just add it as content
             formattedHTML += formatContent(lines);
         }
     });
+
+    formattedHTML += '</div>';
 
     resultDiv.innerHTML = formattedHTML || text;
 }
@@ -196,23 +287,3 @@ function getIconForSection(header) {
 function camelCase(str) {
     return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 }
-
-function getIconForSection(header) {
-    const iconMap = {
-        'Overall Rating': 'fas fa-star',
-        'Key Strengths': 'fas fa-thumbs-up',
-        'Areas for Improvement': 'fas fa-tools',
-        'Suitable Roles': 'fas fa-briefcase',
-        'Actionable Suggestions': 'fas fa-lightbulb'
-    };
-
-    return iconMap[header] || 'fas fa-info-circle';
-}
-
-function camelCase(str) {
-    return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
-}
-
-// Initialize language direction and UI on page load
-handleLanguageChange();
-console.log(API_KEY)
