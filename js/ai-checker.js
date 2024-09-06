@@ -215,3 +215,4 @@ function camelCase(str) {
 
 // Initialize language direction and UI on page load
 handleLanguageChange();
+console.log(API_KEY)
