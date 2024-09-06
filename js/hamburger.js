@@ -1,4 +1,3 @@
-// hamburger.js
 function setupHamburgerMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
