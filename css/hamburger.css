@@ -29,30 +29,58 @@
         display: none;
         flex-direction: column;
         width: 100%;
-        text-align: center;
-        position: absolute;
+        position: fixed;
         top: 60px;
         right: 0;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        bottom: 0;
+        background-color: #f8f9fa; /* רקע בהיר לכל התפריט */
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        padding: 0; /* הסרת הפדינג */
+        margin: 0; /* הסרת המרג'ין */
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
     }
 
     nav .nav-menu.show {
-        display: flex !important; /* הוספת !important */
+        display: flex;
     }
 
     nav .nav-menu li {
-        margin: 10px 0;
+        margin: 0; /* הסרת המרג'ין */
+        padding: 0; /* הסרת הפדינג */
+        width: 100%;
     }
 
     .nav-button {
+        display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 15px 20px;
+        width: 100%;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #ffffff; /* רקע לבן לכל כפתור */
+        border: none; /* הסרת הגבול */
+    }
+
+    .nav-button:not(:last-child) {
+        border-bottom: 1px solid #e9ecef; /* קו הפרדה בין הכפתורים, למעט האחרון */
+    }
+
+    .nav-button:hover, .nav-button:focus {
+        background-color: #e9ecef; /* רקע כהה יותר בעת hover */
+        color: #007bff; /* צבע טקסט כחול בעת hover */
     }
 
     .nav-button i {
-        margin-right: 10px;
-        margin-bottom: 0;
+        margin-left: 15px;
+        font-size: 1.2em;
+    }
+
+    .nav-button span {
+        font-size: 1em;
     }
 }
 
