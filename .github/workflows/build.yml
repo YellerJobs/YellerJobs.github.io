@@ -16,7 +16,7 @@ jobs:
 
       - name: Replace API Key
         run: |
-          sed -i 's/__API_KEY__/${{ secrets.API_KEY }}/g' js/ai-checker.js
+          sed -i 's/__API_KEY__/${{ secrets.API_KEY }}/' js/ai-checker.js
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
