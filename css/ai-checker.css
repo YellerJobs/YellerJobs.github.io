@@ -433,3 +433,118 @@ body {
     right: 20px;
     z-index: 1001;
 }
+
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #1a73e8;
+}
+
+button {
+    background-color: #1a73e8;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #155db1;
+    transform: translateY(-2px);
+}
+
+.drop-zone {
+    border: 2px dashed #1a73e8;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+    background-color: #e8f0fe;
+    border-color: #155db1;
+}
+
+.drop-zone p {
+    color: #5f6368;
+    font-size: 16px;
+}
+
+textarea {
+    border: 1px solid #dadce0;
+    transition: border-color 0.3s;
+}
+
+textarea:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+#result {
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+}
+
+.result-section h2 {
+    color: #1a73e8;
+    border-bottom: 2px solid #1a73e8;
+}
+
+.result-section li::before {
+    color: #1a73e8;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+button {
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#back-to-top {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#back-to-top:hover {
+    background-color: #155db1;
+    transform: translateY(-2px);
+}

@@ -9,15 +9,17 @@ const minSalaryInput = document.getElementById('min-salary');
 const maxSalaryInput = document.getElementById('max-salary');
 const backToTopButton = document.getElementById("back-to-top");
 const contactForm = document.getElementById('contact-form');
+const locationSelect = document.getElementById('location');
 
 
 
 // פונקציות
 
 function init() {
-    renderJobs(jobs);
-    setupEventListeners();
-    populateJobSuggestions();
+  renderJobs(jobs);
+  setupEventListeners();
+  populateJobSuggestions();
+  populateLocationOptions();
 }
 
 function setupEventListeners() {
@@ -27,6 +29,8 @@ function setupEventListeners() {
     minSalaryInput.addEventListener('input', filterJobs);
     maxSalaryInput.addEventListener('input', filterJobs);
     window.addEventListener('scroll', scrollFunction);
+    locationSelect.addEventListener('change', filterJobs);
+
     backToTopButton.addEventListener('click', scrollToTop);
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
@@ -34,23 +38,38 @@ function setupEventListeners() {
 }
 
 function filterJobs() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const selectedCategory = categorySelect.value;
-    const selectedJobType = jobTypeSelect.value;
-    const minSalary = parseInt(minSalaryInput.value) || 0;
-    const maxSalary = parseInt(maxSalaryInput.value) || Infinity;
+  const searchTerm = searchInput.value.toLowerCase();
+  const selectedCategory = categorySelect.value;
+  const selectedJobType = jobTypeSelect.value;
+  const selectedLocation = locationSelect.value;
+  const minSalary = parseInt(minSalaryInput.value) || 0;
+  const maxSalary = parseInt(maxSalaryInput.value) || Infinity;
 
-    const filteredJobs = jobs.filter(job => {
-        const matchesSearch = job.title.toLowerCase().includes(searchTerm) ||
-                              job.company.toLowerCase().includes(searchTerm) ||
-                              job.description.toLowerCase().includes(searchTerm);
-        const matchesCategory = selectedCategory === '' || job.category === selectedCategory;
-        const matchesJobType = selectedJobType === '' || job.type === selectedJobType;
-        const matchesSalary = job.salary >= minSalary && job.salary <= maxSalary;
-        return matchesSearch && matchesCategory && matchesJobType && matchesSalary;
-    });
+  const filteredJobs = jobs.filter(job => {
+    const matchesSearch = job.title.toLowerCase().includes(searchTerm) ||
+                          job.company.toLowerCase().includes(searchTerm) ||
+                          job.description.toLowerCase().includes(searchTerm);
+    const matchesCategory = selectedCategory === '' || job.category === selectedCategory;
+    const matchesJobType = selectedJobType === '' || job.type === selectedJobType;
+    const matchesLocation = selectedLocation === '' || job.location === selectedLocation;
+    const matchesSalary = job.salary >= minSalary && job.salary <= maxSalary;
+    return matchesSearch && matchesCategory && matchesJobType && matchesLocation && matchesSalary;
+  });
 
-    renderJobs(filteredJobs);
+  renderJobs(filteredJobs);
+}
+
+
+
+// פונקציה חדשה למילוי אפשרויות המיקום
+function populateLocationOptions() {
+  const allLocations = [...new Set(jobs.map(job => job.location))];
+  allLocations.forEach(location => {
+    const option = document.createElement('option');
+    option.value = location;
+    option.textContent = location;
+    locationSelect.appendChild(option);
+  });
 }
 
 function renderJobs(jobsToRender) {
