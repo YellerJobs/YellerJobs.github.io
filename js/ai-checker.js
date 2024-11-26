@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyAoLGDUwJJY4ZzmTXaYbwCwlxU2HNPxROQ';
+const API_KEY = 'AIzaSyDOvvNWd2umTdn5BC86hm96mJ6z2-RUYVE';
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 const translations = {
