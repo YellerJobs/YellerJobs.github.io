@@ -1,0 +1,452 @@
+  :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+            --text-color: #333;
+            --success-color: #2ecc71;
+            --warning-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .resume-builder {
+            display: flex;
+            gap: 30px;
+        }
+
+        .input-section, .preview-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .input-section {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .preview-section {
+            flex: 1;
+            position: sticky;
+            top: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin: 25px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .action-buttons button {
+            flex: 1;
+        }
+
+        #downloadResume {
+            background-color: var(--success-color);
+        }
+
+        #downloadResume:hover {
+            background-color: #27ae60;
+        }
+
+        .work-experience-item,
+        .education-item,
+        .certification-item,
+        .project-item {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        .remove-item {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--warning-color);
+            cursor: pointer;
+            font-size: 24px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .resume-preview {
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        /* Resume Preview Styles */
+        .resume-preview h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .resume-preview .contact-info {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .resume-preview .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .resume-preview section {
+            margin-bottom: 25px;
+        }
+
+        .resume-preview h2 {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .resume-preview h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .resume-preview .job,
+        .resume-preview .education-entry,
+        .resume-preview .certification,
+        .resume-preview .project {
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1200px) {
+            .resume-builder {
+                flex-direction: column;
+            }
+
+            .input-section {
+                max-width: 100%;
+            }
+
+            .preview-section {
+                position: static;
+            }
+        }
+
+        /* Print styles for PDF export */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            .resume-preview,
+            .resume-preview * {
+                visibility: visible;
+            }
+
+            .resume-preview {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 40px;
+            }
+        }
+
+
+        /* עדכון לסגנונות הניווט */
+nav {
+    background-color: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 5%; /* הוספת ריפוד למעלה ולמטה */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px; /* התאמת גובה הלוגו לפי הצורך */
+    margin-right: 10px; /* מרווח בין הלוגו לתפריט */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px; /* מרווח בין פריטי התפריט */
+}
+
+.nav-button {
+    text-decoration: none;
+    color: var(--nav-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    height: 60px; /* גובה מותאם לכפתורי הניווט */
+    min-width: 80px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-button i {
+    font-size: 1.4rem; /* גודל אייקון מותאם */
+    margin-bottom: 4px;
+}
+
+.nav-button span {
+    font-size: 0.8rem; /* גודל טקסט מותאם */
+    font-weight: 400;
+}
+
+/* התאמות למסכים קטנים */
+@media (max-width: 768px) {
+    nav {
+        padding: 5px 2%;
+    }
+
+    .logo img {
+        height: 30px; /* הקטנת הלוגו במסכים קטנים */
+    }
+
+    nav ul {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-around;
+        background-color: #fff;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+        padding: 5px 0;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    .nav-button {
+        height: 50px;
+        min-width: 60px;
+        padding: 5px;
+    }
+
+    .nav-button i {
+        font-size: 1.2rem;
+    }
+
+    .nav-button span {
+        font-size: 0.7rem;
+    }
+}
+@media (max-width: 768px) {
+    nav {
+        padding: 10px 5%;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .job-filters {
+        flex-direction: column;
+    }
+
+    .job-filters input,
+    .job-filters select {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .job-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 480px) {
+    section {
+        padding: 3rem 5%;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0;
+    }
+
+    .nav-container {
+        padding: 10px 5%;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .nav-menu {
+        top: 100%; /* שינוי זה יגרום לתפריט להופיע מתחת לסרגל הניווט */
+    }
+
+    /* שאר הסגנונות כפי שהיו קודם */
+}
+
+
+body {
+    padding-top: 100px; /*רווח מתחילת העמוד - בשביל שהתפריט העליון לא יכסה את הכותרת */
+}

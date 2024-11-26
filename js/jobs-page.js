@@ -50,7 +50,9 @@ function filterJobs() {
 
 function renderJobs(jobsToRender) {
     jobList.innerHTML = '';
-    jobsToRender.forEach((job, index) => {
+
+    // הפוך את המערך כך שהמשרה האחרונה תופיע ראשונה
+    jobsToRender.slice().reverse().forEach((job) => {
         const jobCard = document.createElement('div');
         jobCard.classList.add('job-card');
 
@@ -64,12 +66,13 @@ function renderJobs(jobsToRender) {
             <p class="salary"><i class="fas fa-shekel-sign"></i> ${safeRender(job.salary, 'לא ידוע')}</p>
             <p class="job-summary">${safeRender(job.description ? job.description.substring(0, 100) + '...' : null)}</p>
             <div class="job-card-actions">
-                <button class="expand-job" data-index="${index}">
+                <button class="expand-job" data-id="${job.id}">
                     <i class="fas fa-expand"></i> הצג עוד
                 </button>
                 <a href="${safeRender(job.applyUrl, '#')}" class="apply-job" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-paper-plane"></i>&nbsp;הגש מועמדות
-                </a>
+    <i class="fas fa-paper-plane"></i>&nbsp;הגש מועמדות
+</a>
+
             </div>
         `;
 
@@ -80,11 +83,13 @@ function renderJobs(jobsToRender) {
     const expandButtons = document.querySelectorAll('.expand-job');
     expandButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-            const index = event.target.getAttribute('data-index');
-            showJobDetails(jobsToRender[index]);
+            const jobId = event.target.getAttribute('data-id');
+            const job = jobsToRender.find(j => j.id === parseInt(jobId)); // מוצא את המשרה לפי ה-id שלה
+            showJobDetails(job);
         });
     });
 }
+
 
 function showJobDetails(job) {
     const modal = document.getElementById('jobModal');
