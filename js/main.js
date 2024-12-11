@@ -16,11 +16,12 @@ const locationSelect = document.getElementById('location');
 // פונקציות
 
 function init() {
-  renderJobs(jobs);
-  setupEventListeners();
-  populateJobSuggestions();
-  populateLocationOptions();
+    renderJobsIndexPage(jobs); // הצג רק 9 משרות בברירת מחדל
+    setupEventListeners();
+    populateJobSuggestions();
+    populateLocationOptions();
 }
+
 
 function setupEventListeners() {
     searchInput.addEventListener('input', filterJobs);
@@ -143,6 +144,8 @@ function showJobDetails(job) {
     modal.style.display = "block";
 }
 
+
+
 // הוספת קוד לסגירת המודאל
 const modal = document.getElementById('jobModal');
 const span = document.getElementsByClassName("close")[0];
@@ -156,6 +159,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
 
 function getJobTypeHebrew(type) {
     if (type == null) return 'לא ידוע';
@@ -220,7 +224,7 @@ function populateJobSuggestions() {
 function handleFormSubmit(e) {
     e.preventDefault();
     if (validateForm()) {
-        // כאן תוכל להוסיף קוד לשליחת הטופס
+        // כאן אני יכול למשל להוסיף קוד לשליחת הטופס
         alert('הטופס נשלח בהצלחה!');
         contactForm.reset();
     }
@@ -239,6 +243,95 @@ function validateForm() {
     });
     return isValid;
 }
+
+
+
+
+
+function searchJobsIndexPage() {
+    const keyword = document.getElementById('keyword-search').value.toLowerCase();
+    const location = document.getElementById('location-search').value.toLowerCase();
+
+    const filteredJobs = jobs.filter(job => {
+        const matchesKeyword = !keyword || job.title.toLowerCase().includes(keyword) || job.description.toLowerCase().includes(keyword);
+        const matchesLocation = !location || job.location.toLowerCase().includes(location);
+        return matchesKeyword && matchesLocation;
+    });
+
+    renderJobsIndexPage(filteredJobs); // מציג את התוצאות בקטע המשרות האחרונות
+    scrollToJobsSection(); // מעביר את המשתמש למטה לעמודת המשרות
+}
+
+//מכיוון שהקובץ main.js מוגדר כמודול (type="module"), כל הפונקציות והמשתנים בו נמצאים ב-Scope מקומי בלבד ולא חשופים ל-HTML. השורה הזו חושפת את הפונקציה ל-Scope הגלובלי (window), וכך היא זמינה לשימוש בכפתור באמצעות onclick.
+window.searchJobsIndexPage = searchJobsIndexPage;
+
+
+function renderJobsIndexPage(jobsToRender) {
+    const jobList = document.getElementById('job-list');
+    jobList.innerHTML = '';  // נקה את הרשימה קודם
+
+    // הצג רק 9 משרות (ברירת מחדל)
+    const jobsToShow = jobsToRender.slice(0, 9); // חיתוך של 9 המשרות הראשונות
+
+    if (jobsToShow.length === 0) {
+        jobList.innerHTML = '<p>לא נמצאו תוצאות חיפוש.</p>';
+        return;
+    }
+
+    // הצגת המשרות
+    jobsToShow.forEach((job, index) => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('job-card');
+
+        const safeRender = (value, defaultValue = 'לא ידוע') => value != null ? value : defaultValue;
+
+        jobCard.innerHTML = `
+            <h3>${safeRender(job.title)}</h3>
+            <p class="company"><i class="fas fa-building"></i> ${safeRender(job.company)}</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> ${safeRender(job.location)}</p>
+            <p class="job-type"><i class="fas fa-briefcase"></i> ${safeRender(getJobTypeHebrew(job.type))}</p>
+            <p class="salary"><i class="fas fa-shekel-sign"></i> ${safeRender(job.salary, 'לא ידוע')}</p>
+            <p class="job-summary">${safeRender(job.description ? job.description.substring(0, 100) + '...' : null)}</p>
+
+            <!-- כפתור "הצג עוד" -->
+            <div class="job-card-actions">
+                <button class="expand-job" data-index="${index}">
+                    <i class="fas fa-expand"></i> הצג עוד
+                </button>
+                <a href="${safeRender(job.applyUrl, '#')}" class="apply-job" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-paper-plane"></i> הגש מועמדות
+                </a>
+            </div>
+        `;
+        jobList.appendChild(jobCard);
+    });
+
+    // הוספת מאזין אירועים לכל הכפתורים "הצג עוד"
+    const expandButtons = document.querySelectorAll('.expand-job');
+    expandButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const index = event.target.getAttribute('data-index');
+            showJobDetails(jobsToShow[index]); // הצגת פרטי המשרה
+        });
+    });
+}
+
+
+
+function scrollToJobsSection() {
+    const jobsSection = document.getElementById('jobs');
+    if (jobsSection) {
+        jobsSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error('לא נמצא אלמנט עם ID "jobs"');
+    }
+}
+
+
+
+
+
+
 
 // אתחול האפליקציה
 init();

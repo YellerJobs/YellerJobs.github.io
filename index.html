@@ -6,17 +6,13 @@
     <title>משרות לג'וניורים</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/hamburger.css">
     <link rel="stylesheet" href="css/job-modal.css">
-
-    <!-- עמוד העיצוב של החלון של המשרה שנפתח -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <header>
-
+    <!-- Navigation will be loaded dynamically -->
 </header>
 
 <main>
@@ -25,58 +21,80 @@
         <p>טאלנטים צעירים מתחילים כאן</p>
         <p dir="ltr" class="small-text">100% Free for Candidates and Employers</p>
 
-        <a href="#jobs" class="cta-button">חפש משרות</a>
+        <!-- New Search Section -->
+        <div class="search-container">
+            <div class="search-inputs">
+                <div class="input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="keyword-search" placeholder="חפש לפי מילות מפתח" list="job-suggestions">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="location-search" placeholder="בחר מיקום">
+                </div>
+                    <button class="search-button" onclick="searchJobsIndexPage()">
+                        <i class="fas fa-search"></i> חפש משרה
+                    </button>
+            </div>
+        </div>
     </section>
+
+
+     <!-- New Featured Articles Section -->
+    <section id="featured-articles">
+        <h2><i class="fas fa-newspaper"></i> כתבות מומלצות</h2>
+        <div class="articles-grid">
+            <article class="article-card">
+                <img src="https://cdn.pixabay.com/photo/2021/11/14/18/36/telework-6795505_1280.jpg" alt="כתבה 1">
+                <div class="article-content">
+                    <h3>מדריך לבניית תיק עבודות לג'וניור בהייטק</h3>
+                    <p>כניסה לעולם ההייטק כמועמד ג'וניור ללא ניסיון תעסוקתי יכולה להיות מאתגרת, אך תיק עבודות מקצועי ומרשים יכול לשמש...</p>
+                    <a href="articles/article1.html" class="read-more">המשך לקריאה</a>
+                </div>
+            </article>
+            <article class="article-card">
+                <img src="https://cdn.pixabay.com/photo/2021/09/15/15/49/resume-6627200_1280.jpg" alt="טיפים לראיון עבודה">
+                <div class="article-content">
+                    <h3>כתיבת קורות חיים</h3>
+                    <p>כתיבת קורות חיים יכולה להיות משימה מאתגרת, במיוחד אם אתם ג'וניורים ללא ניסיון תעסוקתי רב. עם זאת, קורות חיים בנויים היטב יכולים...</p>
+                    <a href="articles/article2.html" class="read-more">המשך לקריאה</a>
+                </div>
+            </article>
+            <article class="article-card">
+                <img src="	https://cdn.pixabay.com/photo/2016/11/05/22/24/peasant-1801752_960_720.jpg" alt="כתבה 3">
+                <div class="article-content">
+                    <h3>משרות התחלה בהייטק ונתיבי התפתחות מקצועית</h3>
+                    <p>מציאת עבודה ראשונה בהייטק יכולה להיות אתגר עבור ג'וניורים, במיוחד כשאין להם ניסיון תעסוקתי קודם. עם זאת, קיימות משרות שדורשות פחות ניסיון ראשוני ומאפשרות...</p>
+                    <a href="articles/article3.html" class="read-more">המשך לקריאה</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
 
     <section id="jobs">
         <h2><i class="fas fa-briefcase"></i> משרות אחרונות</h2>
-        <div class="job-filters">
-
-            <datalist id="job-suggestions">
-                <!-- יתמלא דינמית ע"י JavaScript -->
-            </datalist>
-
-
-        </div>
         <div id="job-list" class="job-list"></div>
         <div class="center-button">
             <a href="jobs.html" class="cta-button">לכל המשרות ></a>
         </div>
     </section>
+
+
 </main>
 
 <footer>
     <p>&copy; 2024 משרות לג'וניורים. כל הזכויות שמורות.</p>
 </footer>
 
+<!-- Existing scripts remain the same -->
 <script type="module" src="js/main.js"></script>
 <script type="module" src="js/jobs-page.js"></script>
-<button id="back-to-top" title="חזרה למעלה">
-    <i class="fas fa-chevron-up"></i>
-</button>
 <script src="js/hamburger.js"></script>
 <script src="js/load-nav.js"></script>
-<script src="js/hamburger.js" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM fully loaded');
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    console.log('Hamburger:', hamburger);
-    console.log('Nav menu:', navMenu);
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            console.log('Hamburger clicked inline');
-            this.classList.toggle('active');
-            navMenu.classList.toggle('show');
-        });
-    } else {
-        console.error('Hamburger or nav menu not found inline');
-    }
-});
 
-
-</script>
+<!-- Job Modal remains the same -->
 <div id="jobModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>

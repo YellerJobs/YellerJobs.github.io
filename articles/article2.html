@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מגזין | מאמר מלא</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="articles.css">
+
+</head>
+<body>
+
+   <!-- back to home page button -->
+
+    <div class="back-to-home">
+    <a href="../index.html" aria-label="חזרה לדף הבית">
+        <i class="fas fa-home"></i>
+    </a>
+</div>
+
+    <!-- Accessibility Toolbar -->
+    <div class="accessibility-toolbar">
+        <button aria-label="הגדלת טקסט" onclick="toggleFontSize()">
+            <i class="fas fa-text-height"></i>
+        </button>
+        <button aria-label="מצב ניגודיות גבוהה" onclick="toggleHighContrast()">
+            <i class="fas fa-adjust"></i>
+        </button>
+    </div>
+
+    <div class="article-container">
+        <!-- Audio Version Option -->
+         <div class="audio-version" onclick="toggleAudioVersion()">
+            <i class="fas fa-volume-up"></i> האזנה לכתבה
+        </div>
+
+
+        <header class="article-header">
+            <img id="articleImage" class="article-image" src="https://cdn.pixabay.com/photo/2021/09/15/15/49/resume-6627200_1280.jpg" alt="תמונת כתבה עם רקע טכנולוגי">
+            <div class="article-header-content">
+                <h1 id="articleTitle" class="article-title">כתיבת קורות חיים</h1>
+                <div class="article-meta">
+                    <span id="articleSource">YellerJobs</span>
+                    <span id="articleDate">10 בדצמבר 2024</span>
+                    <span id="articleAuthor">יהודה הלר</span>
+                </div>
+            </div>
+        </header>
+
+        <article class="article-content" aria-label="תוכן המאמר">
+
+
+                         <p>כתיבת קורות חיים יכולה להיות משימה מאתגרת, במיוחד אם אתם ג'וניורים ללא ניסיון תעסוקתי רב. עם זאת, קורות חיים בנויים היטב יכולים להוות מפתח חשוב לפתיחת דלתות בעולם ההייטק. במדריך זה נסביר כיצד לכתוב קורות חיים אפקטיביים, נדון בנקודות החשובות שצריך לכלול, ונשתף טיפים מהמומחים.</p>
+
+        <p><strong>מבנה קורות החיים</strong></p>
+
+        <p>קורות החיים שלכם צריכים להיות ברורים, מקצועיים וקלים לקריאה. המבנה הבסיסי כולל:</p>
+
+        <ul>
+            <li><strong>פרטי קשר:</strong> שם מלא, כתובת דוא"ל מקצועית, מספר טלפון וקישור לפרופיל LinkedIn או תיק עבודות.</li>
+            <li><strong>תקציר אישי:</strong> תיאור קצר וממוקד של מי אתם ומה אתם מחפשים.</li>
+            <li><strong>השכלה:</strong> תארים אקדמיים, קורסים רלוונטיים ותעודות מקצועיות.</li>
+            <li><strong>ניסיון מקצועי:</strong> תפקידים, פרויקטים והתמחויות (גם אם לא בתשלום).</li>
+            <li><strong>כישורים טכניים:</strong> שפות תכנות, כלים, טכנולוגיות ופלטפורמות שאתם מכירים.</li>
+            <li><strong>פרויקטים אישיים:</strong> דוגמאות לפרויקטים שפיתחתם בזמנכם החופשי.</li>
+            <li><strong>תחומי עניין נוספים:</strong> מידע שיכול להעשיר את הדמות שלכם בעיני המעסיק.</li>
+        </ul>
+
+        <p><strong>כיצד לנסח תקציר אישי?</strong></p>
+
+        <p>התקציר האישי הוא החלק הראשון שקוראים, ולכן חשוב שהוא יהיה ממוקד ומרשים. לדוגמה:</p>
+
+        <p>"מפתח תוכנה מתחיל עם ידע מעמיק ב-Java ו-Python, ניסיון בפרויקטי קוד פתוח ויכולת עבודה בצוותים מגוונים. מחפש הזדמנות להשתלב בחברה טכנולוגית כדי לתרום מכישוריי ולהתפתח מקצועית."</p>
+
+        <p><strong>הדגשת השכלה</strong></p>
+
+        <p>אם אתם ג'וניורים, סעיף ההשכלה הוא קריטי. פרטו על המוסד האקדמי, תחום הלימוד והישגים בולטים כמו:</p>
+
+        <ul>
+            <li>"זכייה במקום הראשון בהאקתון אוניברסיטאי."</li>
+            <li>"פרויקט גמר בתחום למידת מכונה."</li>
+        </ul>
+
+        <p><strong>כיצד להציג ניסיון מקצועי?</strong></p>
+
+        <p>גם אם אין לכם ניסיון תעסוקתי רב, ניתן לכלול התמחויות, עבודות זמניות ופרויקטים אישיים. לדוגמה:</p>
+
+        <ul>
+            <li><strong>מפתח תוכנה (פרויקט אישי):</strong> פיתוח אפליקציה לניהול משימות ב-Python תוך שימוש ב-Flask ו-SQLAlchemy.</li>
+            <li><strong>מתמחה בפיתוח תוכנה:</strong> עבודה בצוות Agile לשיפור מערכת קיימת ב-JavaScript.</li>
+        </ul>
+
+        <p><strong>הצגת כישורים טכניים</strong></p>
+
+        <p>יצרו רשימה ברורה של הכישורים הטכניים שלכם, למשל:</p>
+
+        <ul>
+            <li>שפות תכנות: Python, Java, JavaScript.</li>
+            <li>טכנולוגיות: Docker, Kubernetes, AWS.</li>
+            <li>מסדי נתונים: MySQL, MongoDB.</li>
+        </ul>
+
+        <p><strong>שימוש במילות מפתח</strong></p>
+
+        <p>מעסיקים רבים משתמשים בתוכנות לסינון קורות חיים. כדי לעבור את הסינון, וודאו שהקורות חיים שלכם כוללים מילות מפתח רלוונטיות מהמודעה, כמו: "Agile," "Machine Learning," "CI/CD."
+        </p>
+
+        <p><strong>עיצוב ונראות</strong></p>
+
+        <p>עיצוב קורות חיים צריך להיות נקי, מקצועי וקריא. טיפים חשובים:</p>
+
+        <ul>
+            <li>שמרו על פורמט PDF כדי להבטיח תאימות.</li>
+            <li>השתמשו בגופן מקצועי כמו Arial או Calibri.</li>
+            <li>שמרו על פסקאות קצרות ורשימות ממוספרות או בנקודות.</li>
+        </ul>
+
+        <p><strong>טיפים מהמומחים</strong></p>
+
+        <p>"מעסיקים מחפשים קורות חיים שמספרים סיפור," אומרת מיכל דהן, מומחית גיוס. "הראו איך הפרויקטים והניסיון שלכם תואמים למשרה המבוקשת."</p>
+
+        <p>לדברי דני כהן, מפתח בכיר: "אל תזלזלו בחשיבות של כתיבה ברורה ומדויקת. אפילו טעות קטנה יכולה לפגוע ברושם הראשוני."</p>
+
+        <p><strong>בדיקה ושיפור</strong></p>
+
+        <p>לפני שליחה, וודאו שקורות החיים שלכם:</p>
+
+        <ul>
+            <li>חפים משגיאות כתיב.</li>
+            <li>מכילים מידע עדכני ומדויק.</li>
+            <li>מותאמים למשרה הספציפית שאליה אתם מגישים מועמדות.</li>
+        </ul>
+
+        <p>שקלו לבקש מחבר או מנטור לעבור עליהם ולהציע שיפורים.</p>
+
+        <p><strong>סיכום</strong></p>
+
+        <p>כתיבת קורות חיים אפקטיביים היא אמנות שדורשת מחשבה, השקעה ותשומת לב לפרטים. עם מבנה נכון, תוכן איכותי ועיצוב מקצועי, תוכלו ליצור רושם ראשוני חיובי ולעשות את הצעד הראשון בקריירה שלכם בהייטק.</p>
+
+        <p>בהצלחה!</p>
+
+
+
+
+        </article>
+
+        <footer class="article-footer">
+            © 2024 כל הזכויות שמורות | מגזין טכנולוגיה
+        </footer>
+    </div>
+
+    <script>
+
+
+let isSpeaking = false; // משתנה כדי לעקוב אחרי מצב ההקראה
+let speechInstance; // משתנה כדי לשמור את ההקראה הנוכחית
+
+function toggleAudioVersion() {
+    const button = document.querySelector('.audio-version');
+
+    if (isSpeaking) {
+        // עצירת ההקראה
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        button.innerHTML = '<i class="fas fa-volume-up"></i> האזנה';
+    } else {
+        // הפעלת ההקראה
+        button.innerText = "מקריא...(לחץ לעצירה)";
+
+        // שליפת כל הטקסט מהעמוד
+        const content = document.body.innerText;
+        speechInstance = new SpeechSynthesisUtterance(content);
+
+        // הגדרת השפה לעברית
+        speechInstance.lang = "he-IL";
+
+        // כשסיים להקריא, לשחזר את הכפתור
+        speechInstance.onend = () => {
+            isSpeaking = false;
+            button.innerHTML = '<i class="fas fa-volume-up"></i> האזנה';
+        };
+
+        // הפעלת ההקראה
+        isSpeaking = true;
+        window.speechSynthesis.speak(speechInstance);
+    }
+}
+
+        function toggleFontSize() {
+            document.body.classList.toggle('large-text');
+        }
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        function playAudioVersion() {
+            // זה המקום להוסיף קוד עבור הפעלת גרסת אודיו של הכתבה
+            alert('פונקציית האודיו תתווסף בהמשך');
+        }
+
+        // הוספת תכונות נגישות
+        document.addEventListener('DOMContentLoaded', () => {
+            const articleImage = document.getElementById('articleImage');
+            articleImage.setAttribute('alt', 'תמונת רקע עבור מאמר על חדשנות טכנולוגית');
+        });
+    </script>
+</body>
+</html>
