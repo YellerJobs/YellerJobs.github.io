@@ -163,7 +163,164 @@ const jobs = [
     type: "Full-time",
     salary: null,
     applyUrl: "https://jobs.deloitte.co.il/job/31-647/"
-}
+},
+{
+        id: 15,
+        title: "MDR Analyst - Shifts Position",
+        company: "Palo Alto Networks",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Cybersecurity",
+        type: "shift",
+        salary: null,
+        applyUrl: "https://www.smartrecruiters.com/PaloAltoNetworks2/744000030743347"
+    },
+    {
+        id: 16,
+        title: "Junior QA Engineer",
+        company: "Parallel Wireless",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Quality Assurance",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://jobs.lever.co/parallelwireless/f4f8d0de-cc01-46b2-b2ba-5462acadc87b"
+    },
+    {
+        id: 17,
+        title: "TECHNICAL OPERATIONS SPECIALIST",
+        company: "Moon Active",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Operations",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://www.moonactive.com/moonactive-position/?uid=49.F1E"
+    },
+    {
+        id: 18,
+        title: "Data Scientist Student",
+        company: "KLA",
+        location: "Yavne, Israel",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Data Science",
+        type: "student",
+        salary: null,
+        applyUrl: "https://kla.wd1.myworkdayjobs.com/Search/job/Yavne-Israel/Data-Scientist-Student_2427067-1"
+    },
+    {
+        id: 19,
+        title: "Freelance Financial Communications Analyst (Italian)",
+        company: "Shield FC",
+        location: "Remote",
+        description: "עבודה כפרילנס בתחום התקשורת הפיננסית, נדרש ידע בשפה האיטלקית.",
+        requirements: ["ידע בשפה האיטלקית"],
+        category: "Finance",
+        type: "freelance",
+        salary: null,
+        applyUrl: "https://www.comeet.com/jobs/shieldfc/A5.00E/freelance-financial-communications-analyst-italian/08.E4D"
+    },
+    {
+        id: 20,
+        title: "Technical Project Manager",
+        company: "Mobileye",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Project Management",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://jobs.eu.lever.co/mobileye/cd4d59ed-c1ba-4559-aef4-fe44ccf80044"
+    },
+    {
+        id: 21,
+        title: "Business Development Representative",
+        company: "Automatit",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Sales",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://www.comeet.com/jobs/automatit/26.003/business-development-representative/38.E4B"
+    },
+    {
+        id: 22,
+        title: "Warehouse Employee- Dalton Site",
+        company: "Maytronics",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Operations",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://www.comeet.com/jobs/maytronics/E3.008/warehouse-employee--dalton-site/85.A4C"
+    },
+    {
+        id: 23,
+        title: "Junior SW Developer- Mobile Team",
+        company: "Lightricks",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Development",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://careers.lightricks.com/position"
+    },
+    {
+        id: 24,
+        title: "QA ENGINEER (OPERATIONS)",
+        company: "Moon Active",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Quality Assurance",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://www.moonactive.com/moonactive-position/?uid=BD.42C&fbclid=IwY2xjawFcbpVleHRuA2FlbQIxMQABHQ8e2sLnvImhdzYefhuAoCOClf9xsTqerG0DUfvTyAOnwMD0RfVIzQ89Ug_aem_g3hO63y7R8fGb1Fc4YzypQ&t=1725474474516&src=LinkedIn"
+    },
+    {
+        id: 25,
+        title: "Sales Development Representative",
+        company: "Monday",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Sales",
+        type: "full-time",
+        salary: null,
+        applyUrl: "https://monday.com/internal-careers/88.E4A"
+    },
+    {
+        id: 26,
+        title: "Strategy Analyst Student",
+        company: "NICE",
+        location: "לא ידוע",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Analysis",
+        type: "student",
+        salary: null,
+        applyUrl: "https://job-boards.eu.greenhouse.io/nice/jobs/4488688101?gh_jid=4488688101"
+    },
+    {
+        id: 27,
+        title: "BUSINESS OPERATION ANALYST- STUDENT POSITION",
+        company: "Rapyd",
+        location: "Israel",
+        description: "לא ידוע",
+        requirements: null,
+        category: "Operations",
+        type: "student",
+        salary: null,
+        applyUrl: "https://www.rapyd.net/company/careers/positions/business-operation-analyst-student-position-israel/"
+    }
+
 
 
 
