@@ -845,12 +845,75 @@ footer {
         flex-grow: 1;
     }
 }
-/* הוספת סקריפט JS קטן כדי להפעיל את ההמבורגר */
-<script>
-    const nav = document.querySelector('nav');
-    const menuToggle = document.querySelector('.menu-toggle');
+/* בקובץ ה CSS שלך (styles.css ככל הנראה) או בתוך תגית <style> בתוך ה <head> */
 
-    menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-    });
-</script>
+/* סגנונות קיימים (לשימור) */
+.search-container {
+    background: var(--background-white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem; /* שמור על ריפוד מסוים למחשב */
+    box-shadow: var(--shadow-lg);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.search-inputs {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap; /* חשוב לרספונסיביות */
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    flex: 1 1 200px; /* חשוב לגמישות */
+    max-width: 300px; /* הגבלה למחשב */
+}
+/* ... שאר הסגנונות הקיימים ... */
+
+/* שיפורים לרספונסיביות של תיבת החיפוש */
+@media (max-width: 768px) { /* מסכים קטנים (טאבלטים ומטה) */
+    .search-container {
+        padding: 1.5rem; /* הקטנת ריפוד */
+    }
+
+    .search-inputs {
+        flex-direction: column; /* סידור אנכי של השדות */
+        align-items: stretch; /* מתיחה לרוחב מלא */
+        gap: 0.75rem; /* מרווח קטן יותר */
+    }
+
+    .input-group {
+        max-width: 100%; /* רוחב מלא במובייל */
+        flex: 1 1 100%; /* חשוב לגמישות מלאה */
+        padding: 0.4rem; /* ריפוד פנימי קטן יותר */
+    }
+
+    .input-group input {
+        font-size: 0.9rem; /* גודל גופן קטן יותר */
+    }
+
+    .search-button {
+        width: 100%; /* רוחב מלא */
+        padding: 0.8rem 1.5rem; /* ריפוד קטן יותר */
+        font-size: 0.9rem; /* גודל גופן קטן יותר */
+    }
+}
+
+@media (max-width: 400px) { /* מסכים קטנים מאוד (טלפונים) */
+    .search-container {
+        padding: 1rem; /* ריפוד מינימלי */
+    }
+
+    .input-group {
+        padding: 0.3rem;
+    }
+    .search-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
