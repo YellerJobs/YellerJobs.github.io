@@ -751,3 +751,106 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* שיפורים ועדכונים לרספונסיביות */
+
+/* טיפול ברוחב מסך קטן מאוד (טלפונים קטנים) */
+@media (max-width: 400px) {
+    .hero h1 {
+        font-size: 2rem; /* גודל כותרת קטן עוד יותר */
+    }
+    .hero p {
+        font-size: 1rem; /* גודל פסקה קטן עוד יותר */
+    }
+    .search-container {
+        padding: 1.5rem; /* פחות ריפוד בתיבת החיפוש */
+    }
+    .search-inputs {
+        gap: 0.75rem; /* מרווח קטן יותר בין שדות החיפוש */
+    }
+    .input-group {
+        padding: 0.3rem; /* פחות ריפוד בשדות הקלט */
+    }
+    .input-group i {
+        margin: 0 0.3rem;
+    }
+    .input-group input {
+        font-size: 0.9rem;
+    }
+    .search-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .job-card {
+        padding: 1rem; /* פחות ריפוד בכרטיסיות משרה */
+    }
+    .job-card h3 {
+        font-size: 1.1rem;
+    }
+    .job-card p {
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* שיפור תפריט ניווט במובייל - הוספת כפתור המבורגר */
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* הסתר את התפריט כברירת מחדל */
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        background-color: var(--background-white); /* רקע לתפריט הנפתח */
+        box-shadow: var(--shadow-sm);
+        position: absolute; /* מיקום אבסולוטי */
+        top: var(--header-height); /* מיקום מתחת לניווט */
+        right: 0;
+        padding: 1rem;
+    }
+
+    nav.active ul {
+        display: flex; /* הצג את התפריט כאשר הוא פעיל */
+    }
+
+    nav li {
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: right;
+    }
+
+    .nav-button {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        text-align: right;
+        border-radius: var(--border-radius-sm);
+        border-bottom: 1px solid #eee; /* הוספת קו הפרדה */
+    }
+
+    .menu-toggle { /* סגנון לכפתור ההמבורגר */
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--text-primary);
+    }
+    nav {
+        flex-direction: row; /* חזרה לתצוגת שורה */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo {
+        flex-grow: 1;
+    }
+}
+/* הוספת סקריפט JS קטן כדי להפעיל את ההמבורגר */
+<script>
+    const nav = document.querySelector('nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
