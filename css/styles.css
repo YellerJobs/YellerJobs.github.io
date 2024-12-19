@@ -917,3 +917,120 @@ footer {
         font-size: 0.8rem;
     }
 }
+
+/* שיפורים ועדכונים לרספונסיביות - טיפול מורחב בטלפונים קטנים */
+
+@media (max-width: 375px) { /* נקודת שבירה קטנה יותר - אייפון SE ומכשירים דומים */
+    body {
+        font-size: 0.9rem; /* גודל גופן בסיסי קטן יותר */
+    }
+
+    h1, h2 {
+        text-align: center; /* יישור כותרות למרכז */
+    }
+
+    .hero {
+        padding: calc(var(--header-height) + 4rem) 1rem 6rem; /* ריפוד מופחת */
+    }
+
+    .hero h1 {
+        font-size: 2rem; /* גודל כותרת מופחת */
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .search-container {
+        padding: 1rem;
+    }
+
+    .search-inputs {
+        gap: 0.5rem;
+    }
+
+    .input-group {
+        padding: 0.3rem;
+    }
+
+    .input-group i {
+        margin: 0 0.2rem;
+    }
+
+    .input-group input {
+        font-size: 0.85rem;
+    }
+
+    .search-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    #featured-articles {
+        padding: 2rem 1rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr; /* טור אחד במובייל קטן */
+        gap: 1rem;
+    }
+
+    .article-card img {
+        height: 150px; /* גובה תמונה מופחת */
+    }
+
+    .article-content {
+        padding: 1rem;
+    }
+
+    .article-content h3 {
+        font-size: 1.1rem;
+    }
+    .article-content p {
+      font-size: 0.8rem;
+    }
+
+    #jobs {
+        padding: 2rem 1rem;
+    }
+    #jobs h2 {
+      font-size: 1.5rem;
+    }
+
+    #job-list {
+        padding: 0 2%; /* ריפוד צדדי מופחת */
+        gap: 1rem;
+    }
+
+    .job-card {
+        padding: 1rem;
+    }
+
+    .job-card h3 {
+        font-size: 1rem;
+    }
+
+    .job-card p {
+        font-size: 0.85rem;
+    }
+
+    .cta-button {
+        padding: 0.75rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+        padding: 0.7rem 0;
+    }
+    nav {
+        padding: 0.5rem;
+    }
+    .logo img {
+      height: 30px;
+    }
+    .menu-toggle {
+      font-size: 1.2rem;
+    }
+}
